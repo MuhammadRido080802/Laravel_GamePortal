@@ -29,6 +29,6 @@ Route::get('/pemain/ubah/{id}', [PemainController::class, 'ubah']);
 Route::put('/pemain/update/{id}', [PemainController::class, 'update']);
 Route::delete('/pemain/hapus/{id}', [PemainController::class, 'destroy']); // Pastikan ini menggunakan metode DELETE
 Route::post('/Order', [WelcomeController::class, 'CreateGame'])->name('games');
-Route::get('/games', [GameController::class, 'index']);
+Route::get('/game', [GameController::class, 'index']);
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/games/cetak', [GameController::class, 'cetak']);

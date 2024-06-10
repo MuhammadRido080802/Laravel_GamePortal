@@ -241,7 +241,7 @@ Game
 
 
         <tbody>
-            @forelse ($game as $game)
+            @forelse ($games as $game)
                 <tr>
                     <td>{{ $game->updated_at }}</td>
                     <td>{{ $game->nama_game }}</td>
