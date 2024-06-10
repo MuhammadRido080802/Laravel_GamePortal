@@ -5,6 +5,7 @@ Edit Pemain
 @endsection
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <style>
   .form-login {
     max-width: 400px;
@@ -53,9 +54,9 @@ Edit Pemain
 
 <h3>Edit Pemain</h3>
 <div class="form-login">
-  <form action="{{ url('/pemain/ubah/' . $pemain->id_pemain) }}" method="post" enctype="multipart/form-data">
+  <form action="{{ url('/pemain/update/' . $pemain->id_pemain) }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @method('put')
+    @method('PUT')
     <div style="text-align: left;">
       <label for="nama">Nama</label>
       <input class="input" type="text" name="nama" id="nama" placeholder="Nama"
@@ -66,7 +67,7 @@ Edit Pemain
 
       <label for="nip">NIP</label>
       <input class="input" type="text" name="nip" id="nip" placeholder="NIP"
-        value="{{ old('nip', $pemain->harga) }}" />
+        value="{{ old('nip', $pemain->nip) }}" />
       @error('nip')
       <p class="error-message">{{ $message }}</p>
       @enderror

@@ -1,42 +1,33 @@
-body{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+@extends('layouts.app')
 
-.navbar-brand{
-    font-family: 'Righteous', cursive;
-}
+@section('title')
+Game
+@endsection
 
-.link a{
-    display: inline-block;
-    margin-top: 20px;
-    margin-right: 10px;
-    color: #fff;
-}
-.container {
-    text-align: center;
-    background-image: url('TugasCRUD/img/bg/zbackground.jpg'); /* Path gambar latar belakang */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #ffffff; /* Warna teks */
-    padding: 20px; /* Jarak padding untuk konten teks */
-    border-radius: 10px; /* Bordes untuk memberi efek estetika */
-}
+@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME PORTAL</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <!-- Own CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- CSS untuk Sidebar -->
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-.container h1 {
-    margin-bottom: 20px;
-}
-
-.container img {
-    display: block;
-    margin: 20px auto;
-    max-width: 200px;
-    background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang semi-transparan untuk gambar */
-    padding: 10px; /* Padding untuk gambar */
-    border-radius: 10px; /* Bordes untuk memberi efek estetika */
-}
-
-
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -59,7 +50,7 @@ body{
         }
 
         .btn-tambah:hover {
-            background-color: #0056b3; /* Warna biru tua saat hover */
+            background-color: #218838; /* Warna hijau lebih gelap saat hover */
         }
 
         .table-data {
@@ -96,7 +87,7 @@ body{
         }
 
         .active {
-            background-color: #0056b3; /* Warna latar belakang saat tombol aktif */
+            background-color: #007bff; /* Warna latar belakang saat tombol aktif */
             color: #fff; /* Warna teks saat tombol aktif */
         }
 
@@ -229,5 +220,44 @@ body{
             color: black;
             text-align: left;
         }
-    
+    </style>
+</head>
 
+
+<button type="button" class="btn btn-tambah">
+  <a href="/pemain/tambah">Tambah Data Game</a>
+</button>
+<table class="table-data">
+<thead style="background-color: #808080; color: #fff;">
+  <tr>
+    <th scope="col" style="width: 20%">Nama Game</th>
+    <th scope="col" style="width: 15%">Nama Pemain</th>
+    <th scope="col" style="width: 20%">Tanggal</th>
+    <th scope="col" style="width: 20%">Platform</th> <br>
+    <th scope="col" style="width: 30%">Ulasan</th> <br>
+    <th scope="col" style="width: 30%">Action</th>
+  </tr>
+</thead>
+
+
+        <tbody>
+            @forelse ($game as $game)
+                <tr>
+                    <td>{{ $game->updated_at }}</td>
+                    <td>{{ $game->nama_game }}</td>
+                    <td>{{ $game->pemain->nama}}</td>
+                    <td>{{ $game->tanggal}}</td>
+                    <td>{{ $game->platform }}</td>
+                    <td style='display: none;'>{{ $game->ulasan }}</td>
+                    <td>
+                        <button class='btn_detail' data-nomorhp='{{ $game->ulasan }}'
+                            onclick='showDetails("{{ $game->nama_game }}", "{{ $game->pemain->nama_pemain }}", "{{ $game->tanggal}}", "{{ $game->platform }}", "{{ $game->ulasan }}")'>Detail</button>
+                    </td>
+                @empty
+                <tr>
+                    <td colspan="6" align="center">Tidak ada data</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+@endsection

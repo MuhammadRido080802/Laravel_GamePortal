@@ -13,5 +13,11 @@ class pemain extends Model
     public $incrementing = true;
     protected $fillable = ['nama', 'nip', 'tier','game_main','device'];
     public $timestamps = false;
+    public function game()
+{
+    return $this->hasMany(game::class, 'pemain_id', 'id_pemain');
 }
+}
+
+
 

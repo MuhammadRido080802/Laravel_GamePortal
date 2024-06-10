@@ -138,7 +138,12 @@
   </section>
 
   <!-- JavaScript untuk membuka dan menutup sidebar -->  
-  <script>      
+  <script>
+  function showDetails(nama_game, nama_pemain, tanggal, platform) {
+         let ulasan = event.target.getAttribute('data-ulasan');
+         alert(`nama_game: ${nama_game}\nnama_pemain: ${nama_pemain}\ntanggal: ${tanggal}\nplatform: ${platform}\nulasan: ${ulasan}`);
+      }
+      
     function toggleSidebar() {
         var sidebar = document.getElementById('sidebar');
         var menuIcon = document.getElementById('menuIcon');
